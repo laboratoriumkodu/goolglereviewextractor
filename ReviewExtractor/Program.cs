@@ -10,8 +10,13 @@ class GooglePlayScraper
 {
     static void Main()
     {
-        var appId = "com.revolut.revolut"; // Change to your app's ID
-        var filename = "revolut";
+        Console.WriteLine("Enter the application id, e.g. for the Revoult application it will be com.revolut.revolut and for the IKO application it will be pl.pkobp.iko and press <enter>");
+        var appId = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(appId))
+            return;
+
+        appId = appId.Trim();
+
         var url = $"https://play.google.com/store/apps/details?id={appId}&hl=en&gl=us";
 
         ChromeOptions options = new ChromeOptions();
@@ -59,7 +64,7 @@ class GooglePlayScraper
             var reviewElements = driver.FindElements(By.CssSelector("div.RHo1pe"));
 
             int countr = 0;
-            using (StreamWriter writer = new StreamWriter($"{filename}.txt"))
+            using (StreamWriter writer = new StreamWriter($"{appId}.txt"))
             {
 
                 foreach (var review in reviewElements)
