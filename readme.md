@@ -36,5 +36,6 @@ dotnet restore
 3. Build and run project
 <pre>
 dotnet build
+cd ReviewExtractor
 dotnet run
 </pre>
